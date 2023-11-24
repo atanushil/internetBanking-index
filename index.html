@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ASRAM Bank</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito Sans', serif;
+
+        }
+
+        body {
+            font-size: 20px;
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .dropbtn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #111a2b;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+
+        }
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #0056b3;
+        }
+
+        .nav-bar {
+            padding: 2.5vh 20px;
+            background-color: #111a2b;
+            display: flex;
+            width: 98.8vw;
+            align-items: center;
+            color: #fff;
+            justify-content: space-between;
+        }
+
+        .nav-bar .logo-content .logo {
+            display: flex;
+        }
+
+        .nav-bar ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-bar ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px;
+            transition: all 0.5s ease;
+        }
+
+        .nav-bar li a:hover {
+            background-color: white;
+            color: #111a2b;
+            border-radius: 4px;
+        }
+
+        .subscribe-container {
+            text-align: center;
+        }
+
+        .subscribe-input {
+            width: 60%;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .subscribe-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+
+        .subscribe-button:hover {
+            transition: all 0.1s ease-in-out;
+            background-color: #0056b3;
+        }
+
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            /* 100% of the viewport height */
+        }
+
+        .centered-div {
+            max-width: 70vw;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        .centered-div #comment {
+            font-size: 48px;
+            color: #111a2b;
+            font-weight: lighter;
+        }
+
+        .centered-div #comment span {
+            font-weight: 600;
+        }
+
+        .centered-div p {
+            line-height: normal;
+            color: lightslategray;
+        }
+
+        .services {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            padding: 50px 0;
+        }
+
+        .services .box {
+            width: 22vw;
+            text-align: center;
+            background-color: ghostwhite;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            transition: all 0.7s ease;
+        }
+
+        .box .heading {
+            font-size: 48px;
+        }
+
+        .services .box i {
+            color: #0f224c;
+            font-size: 100px;
+        }
+
+        .services .box:hover {
+            color: white;
+            background-color: #ffaf02;
+        }
+
+        .services .box:hover i {
+            color: white;
+        }
+
+        .services .box:hover button {
+            background-color: white;
+        }
+
+        .services .box button {
+            margin-top: 50px;
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #fff;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            font-weight: 600;
+            font-size: 24px;
+            text-transform: uppercase;
+            border-bottom: 2px solid blue;
+
+        }
+
+        .services .box button:hover {
+            border-bottom: 2px solid black;
+            color: blue;
+        }
+
+        .ads {
+            margin-top: 100px;
+            position: relative;
+            display: flex;
+            justify-content: space-evenly;
+            line-height: 55px;
+        }
+
+        .ads .big-logo img {
+            width: 40vw;
+            height: 80vh;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+        }
+
+        .ads .content {
+            margin-top: 50px;
+        }
+
+        .ads .content #comment {
+            font-size: 48px;
+            color: #111a2b;
+            font-weight: lighter;
+        }
+
+        .ads .content #comment span {
+            font-weight: 600;
+        }
+
+        .content #dark {
+            line-height: normal;
+            padding: 20px 0;
+            color: black;
+        }
+
+        .content #light {
+            line-height: normal;
+            padding: 20px 0;
+            color: lightslategray;
+        }
+
+        .content button {
+            margin-top: 15%;
+            font-size: 36px;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 2px solid black;
+            outline: none;
+            border: none;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.5s ease;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content button:hover {
+            color: #fff;
+            background-color: black;
+            cursor: pointer;
+        }
+
+        .news-and-currencies {
+            width: 98.8vw;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin: 40px 0;
+
+        }
+
+        .news-and-currencies .first-part {
+            height: 100%;
+            width: 45vw;
+            padding: 20px 0;
+        }
+
+        .news-and-currencies .first-part ul li {
+            list-style: none;
+            line-height: 40px;
+            margin-bottom: 40px;
+        }
+
+        .news-and-currencies .first-part ul li h2 {
+            transition: all 0.5s ease;
+
+        }
+
+        .news-and-currencies .first-part ul li h2:hover {
+            cursor: pointer;
+            color: #ffaf02;
+        }
+
+        .first-part ul li h4 span {
+            color: #ffaf02;
+            margin-right: 10px;
+        }
+
+        .news-and-currencies .first-part ul li img {
+            float: left;
+            width: 30%;
+            height: 100%;
+            margin-right: 20px;
+        }
+
+        .news-and-currencies .second-part {
+            height: 100%;
+            width: 40vw;
+            padding: 20px 0;
+
+            list-style: armenian;
+        }
+
+        .news-and-currencies .second-part ol {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .news-and-currencies .second-part ol li {
+            display: flex;
+            padding: 0 10px;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 5px;
+            background-color: gainsboro;
+            line-height: 50px;
+            align-items: center;
+            border-radius: 8px;
+            transition: all 0.5s ease;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #111a2b;
+        }
+
+        .news-and-currencies .second-part ol li:hover {
+            background-color: #ffaf02;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .Sub-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            /* 100% of the viewport height */
+        }
+
+        .Subscribe-div {
+            max-width: 70vw;
+            text-align: center;
+            background-color: #0f224c;
+            padding: 50px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 40px;
+        }
+
+        .Subscribe-div .heading {
+            font-size: 48px;
+            line-height: 100px;
+        }
+
+        .Subscribe-div .heading span {
+            font-weight: 600;
+        }
+
+        .Subscribe-div .input form {
+            margin-top: 50px;
+            background-color: white;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            outline: none;
+            border: none;
+        }
+
+        .Subscribe-div .input input {
+            border: none;
+            width: 30vw;
+            outline: none;
+            padding-left: 20px;
+            font-size: 16px;
+        }
+
+        .Subscribe-div .input button {
+            padding: 5px 10px;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.5s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .Subscribe-div .input button:hover {
+            background-color: #ffaf02;
+        }
+
+        .about-and-contact {
+            padding: 10px 0;
+            display: flex;
+            background-color: #0f224c;
+            width: 98.8vw;
+            opacity: 0.8;
+            height: 50vh;
+            justify-content: space-evenly;
+        }
+
+        .about-and-contact .about {
+            width: 45vw;
+            height: 100%;
+            color: #fff;
+        }
+
+        .about-and-contact .about .logo-content .logo {
+            display: flex;
+            padding: 20px 0;
+        }
+
+        .about-and-contact .form-container {
+            width: 45vw;
+            height: 100%;
+        }
+
+        .form-container {
+            width: 400px;
+            border: 2px solid transparent;
+            padding: 32px 24px;
+            font-size: 14px;
+            font-family: inherit;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-sizing: border-box;
+            border-radius: 16px;
+        }
+
+        .form-container button:active {
+            scale: 0.95;
+        }
+
+        .form-container .form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-container .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .form-container .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #717171;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .form-container .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: #fff;
+            font-family: inherit;
+            background-color: transparent;
+            border: 1px solid #414141;
+        }
+
+        .form-container .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            resize: none;
+            color: #fff;
+            height: 96px;
+            border: 1px solid #414141;
+            background-color: transparent;
+            font-family: inherit;
+        }
+
+        .form-container .form-group input::placeholder {
+            opacity: 0.5;
+        }
+
+
+
+        .form-container .form-submit-btn {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            align-self: flex-start;
+            font-family: inherit;
+            color: #fff;
+            font-weight: 600;
+            width: 40%;
+            background: #313131;
+            border: 1px solid #414141;
+            padding: 12px 16px;
+            font-size: inherit;
+            gap: 8px;
+            margin-top: 8px;
+            cursor: pointer;
+            border-radius: 6px;
+            background-color: #007BFF;
+            text-transform: uppercase;
+        }
+
+        .form-container .form-submit-btn:hover {
+            border-color: #fff;
+            opacity: 0.7;
+        }
+
+        #scrollToTopButton {
+            display: none;
+            /* Hide the button by default */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 15px;
+        }
+
+
+        /* Floating div styles */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .overlay-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .fa-circle-xmark {
+            position: absolute;
+            background-color: #0f224c;
+            border-radius: 50%;
+            right: -7px;
+            top: -7px;
+            font-size: 24px;
+        }
+
+        .overlay .overlay-content .option {
+            display: flex;
+            gap: 5px;
+            justify-content: space-between;
+        }
+
+        .overlay .overlay-content .option div {
+            background-color: #0f224c;
+            color: #fff;
+            padding: 2px 5px;
+            cursor: pointer;
+        }
+
+        .selected-div {
+            height: 100%;
+            width: 100%;
+            display: flex;
+        }
+
+        .admin-login,
+        .staff-login,
+        .client-login {
+            padding: 20px;
+            display: flex;
+            height: 100%;
+            width: 100%;
+            color: white;
+            gap: 2px;
+            flex-direction: column;
+            background-color: #0f224c;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+
+        }
+
+        .overlay .overlay-content form {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+        }
+
+        form input {
+            height: 40px;
+            padding-left: 10px;
+            width: 90%;
+        }
+
+        form .submit-btn {
+            width: 60%;
+            margin-top: 18px;
+            height: 40px;
+            font-weight: 800;
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .submit-btn:hover {
+            transition: all 0.3s ease-in-out;
+            color: yellow;
+            opacity: 0.7;
+        }
+
+        .admin-login {
+            display: none;
+        }
+
+        .staff-login {
+            display: none;
+        }
+
+        .client-login {
+            display: none;
+        }
+
+        .about-and-contact .about ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .about span {
+            font-weight: 600;
+
+        }
+
+        .about ul li a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: capitalize;
+            padding: 5px 10px;
+        }
+    </style>
+
+    <body>
+        <div class="nav-bar" id="home">
+            <div class="logo-content">
+                <div class="logo">
+                    <i class="fa-solid fa-hands-holding-circle"></i>
+                    <div class="logo_name">ASRAM Bank</div>
+                </div>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#currencies">Currencies</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <div class="dropdown">
+                        <button class="dropbtn">Log in</button>
+                        <div class="dropdown-content">
+                            <a class="nav-link" target="_blank" href="admin/pages_index.php">Admin Portal</a>
+                            <a class="nav-link" target="_blank" href="staff/pages_staff_index.php">Staff Portal</a>
+                            <a class="nav-link" target="_blank" href="client/pages_client_index.php">Client Portal</a>
+                        </div>
+                    </div>
+                <li>
+                    <div class="subscribe-container">
+                        <form action="">
+                            <input class="subscribe-input" type="email" placeholder="Enter your email" required>
+                            <button class="subscribe-button">Subscribe</button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="center-container">
+            <div class="centered-div">
+                <p id="comment">
+                    Let's change <br>
+                    <span>the world </span>
+                    together.
+                </p>
+                <p>In this HTML template, you'll need to create separate CSS and JavaScript files (styles.css and
+                    script.js) to style and add functionality to the various sections. This example only provides the
+                    HTML structure.
+                    Please note that a real banking website would require a robust back-end system, strong security
+                    measures, and compliance with financial regulations. It's highly recommended to work with
+                    professional web developers and security experts for such a project.</p>
+            </div>
+        </div>
+        <div class="services" id="services">
+            <div class="box">
+                <i class="fa-solid fa-vault"></i>
+                <div class="heading">Fast & Easy</div>
+                <div class="details">
+                    <p>In this HTML template, you'll need to create separate CSS and JavaScript files (styles.css
+                        and
+                        script.js) to style and add functionality to the various sections. This example only
+                        provides the
+                        HTML structure.</p>
+                </div>
+                <button>Read more...</button>
+            </div>
+            <div class="box">
+                <i class="fa-brands fa-bitcoin"></i>
+                <div class="heading">No strigs attached</div>
+                <div class="details">
+                    <p>In this HTML template, you'll need to create separate CSS and JavaScript files (styles.css
+                        and
+                        script.js) to style and add functionality to the various sections. This example only
+                        provides the
+                        HTML structure.</p>
+                </div>
+                <button>Read more...</button>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-scale-unbalanced-flip"></i>
+                <div class="heading">Small commisions</div>
+                <div class="details">
+                    <p>In this HTML template, you'll need to create separate CSS and JavaScript files (styles.css
+                        and
+                        script.js) to style and add functionality to the various sections. This example only
+                        provides the
+                        HTML structure.</p>
+                </div>
+                <button>Read more...</button>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-user-shield"></i>
+                <div class="heading">100% secure</div>
+                <div class="details">
+                    <p>In this HTML template, you'll need to create separate CSS and JavaScript files (styles.css
+                        and
+                        script.js) to style and add functionality to the various sections. This example only
+                        provides the
+                        HTML structure.</p>
+                </div>
+                <button>Read more...</button>
+            </div>
+        </div>
+        <div class="ads">
+            <div class="big-logo">
+                <img src="img/cover.jpeg" alt="">
+            </div>
+            <div class="content">
+                <p id="comment">
+                    Let's change <br>
+                    <span>the world </span>
+                    together.
+                </p>
+                <p id="dark">Cras vitae turpis lacinia, lacinia lacus non, nisi.<br> Donec et sollicitudin est, in
+                    euismod erat. Ut at erat et arcu<br> pulvinar cursus a eget nisl.</p>
+                <p id="light">Cras vitae turpis lacinia, lacinia lacus non, nisi.<br> Donec et sollicitudin est, in
+                    euismod erat. Ut at erat et arcu<br> pulvinar cursus a eget nisl.</p>
+                <button>Read more...</button>
+            </div>
+        </div>
+        <div class="news-and-currencies" id="currencies">
+            <div class="first-part">
+                <ul>
+                    <li>
+                        <img src="img/market.jpeg" alt="market">
+                        <h2>This Platform Aims to Disrupt the Market</h2>
+                        <h4><span>Hindustan News</span>| Oct 19, 2023</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, voluptate
+                            quod?</p>
+                    </li>
+                    <li>
+                        <img src="img/fund.jpeg" alt="2.jpg">
+                        <h2>New Hedge Funds invests in Crypto</h2>
+                        <h4><span>Hindustan News</span>| Oct 19, 2023</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, voluptate
+                            quod?</p>
+                    </li>
+                    <li>
+                        <img src="img/market.jpeg" alt="3.jpg">
+                        <h2>This Platform Aims to Disrupt the Market</h2>
+                        <h4><span>Hindustan News</span>| Oct 19, 2023</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, voluptate
+                            quod?</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="second-part">
+                <ol>
+                    <li>
+                        <p>No</p>
+                        <div class="c-name">Countries</div>
+                        <div class="currency-name">Currency Name</div>
+                        <div class="value">Price (1 Rs)</div>
+
+                    </li>
+                    <li>
+                        <p>1</p>
+                        <div class="c-name">Sri Lanka</div>
+                        <div class="currency-name">Sri Lankan Rupee</div>
+                        <div class="value">3.89</div>
+                    </li>
+                    <li>
+                        <p>2</p>
+                        <div class="c-name">Indonesia</div>
+                        <div class="currency-name">rupiah</div>
+                        <div class="value">184.12</div>
+                    </li>
+                    <li>
+                        <p>3</p>
+                        <div class="c-name">Vietnam</div>
+                        <div class="currency-name">Vietnamese Dong</div>
+                        <div class="value">289.54</div>
+                    </li>
+                    <li>
+                        <p>4</p>
+                        <div class="c-name">Nepal</div>
+                        <div class="currency-name">Nepalese Rupee</div>
+                        <div class="value">1.60</div>
+                    </li>
+                    <li>
+                        <p>5</p>
+                        <div class="c-name">Cambodia</div>
+                        <div class="currency-name">Cambodian riel</div>
+                        <div class="value">50.05</div>
+                    </li>
+                    <li>
+                        <p>6</p>
+                        <div class="c-name">Japan</div>
+                        <div class="currency-name">Japenese Yen</div>
+                        <div class="value">1.77</div>
+                    </li>
+                    <li>
+                        <p>7</p>
+                        <div class="c-name">Hungary</div>
+                        <div class="currency-name">Hungarian Forint</div>
+                        <div class="value">4.35</div>
+                    </li>
+                    <li>
+                        <p>8</p>
+                        <div class="c-name">South Korea</div>
+                        <div class="currency-name">South Korean Won</div>
+                        <div class="value">16.03</div>
+                    </li>
+                    <li>
+                        <p>9</p>
+                        <div class="c-name">Costa Rica</div>
+                        <div class="currency-name">Costa Rican Colon</div>
+                        <div class="value">6.47</div>
+                    </li>
+                    <li>
+                        <p>10</p>
+                        <div class="c-name">Paraguay</div>
+                        <div class="currency-name">Paraguayan Guarani</div>
+                        <div class="value">87.63</div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="Sub-container">
+            <div class="Subscribe-div">
+                <p class="heading">Subscribe to <span>Newsletter</span></p>
+                <p>Cras vitae turpis lacinia, lacinia lacus non, fermentum nisi. Donec et sollicitudin est, in euismod
+                    erat. Ut at erat et arcu pulvinar cursus a eget nisl.</p>
+                <div class="input">
+                    <form action="">
+                        <input type="email" name="" id="" required placeholder="example@gmail.com">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="about-and-contact">
+            <div class="about">
+                <div class="logo-content">
+                    <div class="logo">
+                        <i class="fa-solid fa-hands-holding-circle"></i>
+                        <div class="logo_name">ASRAM Bank</div>
+                    </div>
+                </div>
+                <p><br>
+                    <span>Developer Name</span>
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-user-secret"></i>
+                        <a href="#">Atanu Shil</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user-secret"></i>
+                        <a href="#">Mriganka Mahato</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user-secret"></i>
+                        <a href="#">Ajay Kr. Tarafder</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user-secret"></i>
+                        <a href="#">Subhrajit Mondal</a>
+                    </li>
+                    <!-- <li>
+                        <i class="fa-solid fa-user-secret"></i>
+                        <a href="#">Rajat Kr Tarafder</a>
+                    </li> -->
+                </ul>
+                </p>
+            </div>
+            <div class="form-container" id="contact">
+                <form class="form">
+                    <div class="form-group">
+                        <label for="email">Company Email</label>
+                        <input type="text" id="email" name="email" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea">How Can We Help You?</label>
+                        <textarea name="textarea" id="textarea" rows="10" cols="50" required=""></textarea>
+                    </div>
+                    <button class="form-submit-btn" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <button id="scrollToTopButton">Top<i class="fa-solid fa-turn-up"></i></button>
+        <!-- for log in  -->
+        <script>
+            let scrollToTopButton = document.getElementById("scrollToTopButton");
+            window.onscroll = function () {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    scrollToTopButton.style.display = "block";
+                } else {
+                    scrollToTopButton.style.display = "none";
+                }
+            };
+            scrollToTopButton.onclick = function () {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            };
+        </script>
+    </body>
+
+</html>
